@@ -18,9 +18,7 @@ function makeGalleryMarkup(galleryItems) {
       class="gallery__image"
       src="${preview}"
       alt="${description}"
-    />
-  </a>
-</div>`;
+    /></a>`;
     })
     .join('');
 }
