@@ -21,7 +21,10 @@ form.addEventListener('input', throttle(inputText, 500));
 
 // to get values of our forms and add it to local storage
 function inputText(evt) {
-  formData[evt.target.name] = evt.target.value;
+  const emailInput = form.elements.email.value;
+  const messageInput = textarea.value;
+
+  formData = { email: emailInput, message: messageInput };
   const message = formData;
   localStorage.setItem(STORAGE_NAME, JSON.stringify(message));
 }
