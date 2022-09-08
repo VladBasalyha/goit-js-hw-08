@@ -1,6 +1,8 @@
 import throttle from 'lodash.throttle';
 // variable for locale storage name
 const STORAGE_NAME = 'feedback-form-state';
+// objct for data from elements of form
+let formData = {};
 
 // references for inputs and forms
 const refs = {
@@ -9,9 +11,6 @@ const refs = {
   textarea: document.querySelector('textarea'),
   submitBtn: document.querySelector('button'),
 };
-
-// objct for data from elements of form
-const formData = {};
 
 const { form, email, textarea, submitBtn } = refs;
 
@@ -25,8 +24,8 @@ function inputText(evt) {
   const messageInput = textarea.value;
 
   formData = { email: emailInput, message: messageInput };
-  const message = formData;
-  localStorage.setItem(STORAGE_NAME, JSON.stringify(message));
+
+  localStorage.setItem(STORAGE_NAME, JSON.stringify(formData));
 }
 
 // to save elements of our email and message if page was reloaded
@@ -34,7 +33,7 @@ function populateTextArea() {
   const savedMessage = localStorage.getItem(STORAGE_NAME);
 
   if (savedMessage) {
-    const parsedMessage = JSON.parse(localStorage.getItem(STORAGE_NAME));
+    const parsedMessage = JSON.parse(savedMessage);
     email.value = parsedMessage.email;
     textarea.value = parsedMessage.message;
   }
